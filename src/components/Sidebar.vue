@@ -1,0 +1,36 @@
+<template>
+  <div class="sidebar">
+    <div class="sidebar__navigation-links">
+      <ul>
+        <li>Home</li>
+        <li>Route Params</li>
+        <li>Nested Route</li>
+        <li>Redirect</li>
+        <li>Protected Route</li>
+        <li>Lazy Loading</li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Sidebar',
+};
+</script>
+
+<style scoped>
+.sidebar {
+  position: absolute;
+  top: 52px;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  background-color: #f7f7f9;
+}
+
+.sidebar__navigation-links {
+  padding: 10px;
+}
+</style>
+
