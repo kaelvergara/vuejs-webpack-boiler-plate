@@ -6,6 +6,9 @@ var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
+var webpackErrorTransformer = require("./transformers/webpack.transformer");
+var webpackErrorFormatter = require("./formatters/webpack.formatter");
+
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
@@ -30,6 +33,11 @@ module.exports = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
-    new FriendlyErrorsPlugin()
+    new FriendlyErrorsPlugin({
+      // Fix for stylelint not showing errors on console for dev server
+      // https://github.com/geowarin/friendly-errors-webpack-plugin/issues/38
+      additionalTransformers: [webpackErrorTransformer],
+      additionalFormatters: [webpackErrorFormatter]
+    })
   ]
 })
