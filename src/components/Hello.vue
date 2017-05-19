@@ -24,8 +24,9 @@
 export default {
   name: 'hello',
   data() {
+    // directly get data from vuex store
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: this.$store.state.welcomeMessage,
     };
   },
 };
