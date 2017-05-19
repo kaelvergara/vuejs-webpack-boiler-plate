@@ -37,13 +37,13 @@ List and explanation taken from [vue-templates/webpack][3] documentation.
 │   ├── App.vue                 # main app component
 │   ├── components/             # ui components
 │   │   └── ...
-| ├── router/         # vue-router config
+|   ├── router/                 # vue-router config
 │   │   └── ...
-| ├── store/          # vuex config
+|   ├── store/                  # vuex config
 │   │   └── ...
-│   └── assets/                 # module assets (processed by webpack)
-|   ├── styles
-|   | └── ...       # sass files
+│   ├── assets/                 # module assets (processed by webpack)
+|   └── styles
+|       └── ...                 # sass files
 │       └── ...
 ├── static/                     # pure static assets (directly copied)
 ├── .babelrc                    # babel config
@@ -53,7 +53,7 @@ List and explanation taken from [vue-templates/webpack][3] documentation.
 ├── .editorconfig               # editor config
 ├── index.html                  # index.html template
 ├── package.json                # build scripts and dependencies
-└── yarn.lock                 # yarn lock file
+└── yarn.lock                   # yarn lock file
 ```
 ### Explanation
 
