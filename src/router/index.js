@@ -12,6 +12,9 @@ import Protected  from '@/routes/Protected';
 import Dashboard  from '@/routes/Protected/routes/Dashboard';
 import Login      from '@/routes/Protected/routes/Login';
 
+// Simple form
+import SimpleForm from '@/routes/SimpleForm';
+
 import auth from '@/utils/auth';
 
 // Lazy Loading
@@ -69,6 +72,7 @@ export default new Router({
         { path: 'componentB', component: LazyLoadCompB },
       ],
     },
+    { path: '/simple-form', component: SimpleForm },
     { path: '*', redirect: '/not-found' },
   ],
 });

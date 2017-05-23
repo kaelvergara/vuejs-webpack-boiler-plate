@@ -10,6 +10,10 @@
         <li><router-link to="/protected">Protected</router-link></li>
         <li><router-link to="/lazy-loading">Lazy Loading</router-link></li>
       </ul>
+      <span>Forms</span>
+      <ul>
+        <li><router-link to="/simple-form">Simple Form</router-link></li>
+      </ul>
     </div>
   </div>
 </template>
