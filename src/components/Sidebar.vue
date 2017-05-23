@@ -1,9 +1,10 @@
 <template>
   <div class="sidebar">
     <div class="sidebar__navigation-links">
+      <span>Routes</span>
       <ul>
         <li>Home</li>
-        <li>Route Params</li>
+        <li><router-link to="/dynamic/1">Dynamic</router-link></li>
         <li>Nested Route</li>
         <li>Redirect</li>
         <li>Protected Route</li>
