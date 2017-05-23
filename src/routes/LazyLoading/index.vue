@@ -12,6 +12,6 @@
 <script>
 
 export default {
-  name: 'Lazy loading',
+  name: 'Lazyloading',
 };
 </script>
