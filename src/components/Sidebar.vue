@@ -6,7 +6,7 @@
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/dynamic/1">Dynamic</router-link></li>
         <li><router-link to="/nested">Nested</router-link></li>
-        <li>Redirect</li>
+        <li><router-link to="/abcd">Redirect (404)</router-link></li>
         <li>Protected Route</li>
         <li>Lazy Loading</li>
       </ul>

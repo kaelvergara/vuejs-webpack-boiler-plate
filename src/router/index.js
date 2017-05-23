@@ -6,6 +6,7 @@ import Dynamic from '@/routes/Dynamic';
 import Nested from '@/routes/Nested';
 import ComponentA from '@/routes/Nested/routes/ComponentA';
 import ComponentB from '@/routes/Nested/routes/ComponentB';
+import NotFound from '@/routes/NotFound';
 
 Vue.use(Router);
 
@@ -34,6 +35,15 @@ export default new Router({
           component: ComponentB,
         },
       ],
+    },
+    {
+      path: '/not-found',
+      name: 'NotFound',
+      component: NotFound,
+    },
+    {
+      path: '*',
+      redirect: '/not-found',
     },
   ],
 });
