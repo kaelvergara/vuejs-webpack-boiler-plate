@@ -35,6 +35,12 @@ module.exports = {
     }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'global-require': 0
+    'global-require': 0,
+    'no-multi-spaces': [2, {
+      'exceptions': {
+        'ImportDeclaration': true,
+        'VariableDeclarator': true
+      }
+    }]
   }
 }
