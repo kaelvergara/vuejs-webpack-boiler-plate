@@ -5,7 +5,7 @@
       <ul>
         <li>Home</li>
         <li><router-link to="/dynamic/1">Dynamic</router-link></li>
-        <li>Nested Route</li>
+        <li><router-link to="/nested">Nested</router-link></li>
         <li>Redirect</li>
         <li>Protected Route</li>
         <li>Lazy Loading</li>
