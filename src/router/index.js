@@ -13,22 +13,10 @@ import Login from '@/routes/Protected/routes/Login';
 
 import auth from '@/utils/auth';
 
-// the only difference with lazy loading is with how we import components
-const LazyLoading = (resolve) => {
-  require.ensure(['@/routes/LazyLoading'], () => {
-    resolve(require('@/routes/LazyLoading'));
-  });
-};
-const LazyLoadCompA = (resolve) => {
-  require.ensure(['@/routes/LazyLoading/routes/ComponentA'], () => {
-    resolve(require('@/routes/LazyLoading/routes/ComponentA'));
-  });
-};
-const LazyLoadCompB = (resolve) => {
-  require.ensure(['@/routes/LazyLoading/routes/ComponentB'], () => {
-    resolve(require('@/routes/LazyLoading/routes/ComponentB'));
-  });
-};
+// webpack 2 specific
+const LazyLoading = () => import('@/routes/LazyLoading');
+const LazyLoadCompA = () => import('@/routes/LazyLoading/routes/ComponentA');
+const LazyLoadCompB = () => import('@/routes/LazyLoading/routes/ComponentB');
 
 Vue.use(Router);
 
