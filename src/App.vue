@@ -2,8 +2,12 @@
   <div id="app">
     <AppHeader></AppHeader>
     <Sidebar></Sidebar>
-    <div id="content">
-      <router-view></router-view>
+    <div id="content" class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <router-view></router-view>
+        </div>
+      </div>
     </div>
   </div>
 </template>
