@@ -13,6 +13,23 @@ import Login from '@/routes/Protected/routes/Login';
 
 import auth from '@/utils/auth';
 
+// the only difference with lazy loading is with how we import components
+const LazyLoading = (resolve) => {
+  require.ensure(['@/routes/LazyLoading'], () => {
+    resolve(require('@/routes/LazyLoading'));
+  });
+};
+const LazyLoadCompA = (resolve) => {
+  require.ensure(['@/routes/LazyLoading/routes/ComponentA'], () => {
+    resolve(require('@/routes/LazyLoading/routes/ComponentA'));
+  });
+};
+const LazyLoadCompB = (resolve) => {
+  require.ensure(['@/routes/LazyLoading/routes/ComponentB'], () => {
+    resolve(require('@/routes/LazyLoading/routes/ComponentB'));
+  });
+};
+
 Vue.use(Router);
 
 function requireAuth(to, from, next) {
@@ -76,6 +93,21 @@ export default new Router({
             auth.logout();
             next('/protected');
           },
+        },
+      ],
+    },
+    // the only difference with lazy loading is with how we import components
+    {
+      path: '/lazy-loading',
+      component: LazyLoading,
+      children: [
+        {
+          path: 'componentA',
+          component: LazyLoadCompA,
+        },
+        {
+          path: 'componentB',
+          component: LazyLoadCompB,
         },
       ],
     },

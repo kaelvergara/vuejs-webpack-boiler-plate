@@ -8,7 +8,7 @@
         <li><router-link to="/nested">Nested</router-link></li>
         <li><router-link to="/abcd">Redirect (404)</router-link></li>
         <li><router-link to="/protected">Protected</router-link></li>
-        <li>Lazy Loading</li>
+        <li><router-link to="/lazy-loading">Lazy Loading</router-link></li>
       </ul>
     </div>
   </div>
