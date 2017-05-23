@@ -8,6 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var CompressionPlugin = require("compression-webpack-plugin")
 
 var env = config.build.env
 
@@ -76,6 +77,13 @@ var webpackConfig = merge(baseWebpackConfig, {
           ) === 0
         )
       }
+    }),
+    // generate gzip files
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.(js|html)$/,
+      minRatio: 0.8
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
