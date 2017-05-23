@@ -4,3 +4,9 @@
     <p>Yay you made it!</p>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Dashboard',
+};
+</script>

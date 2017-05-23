@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Hello from '@/components/Hello';
+import Home from '@/routes/Home';
 import Dynamic from '@/routes/Dynamic';
 import Nested from '@/routes/Nested';
 import ComponentA from '@/routes/Nested/routes/ComponentA';
@@ -35,8 +35,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello,
+      name: 'Home',
+      component: Home,
     },
     {
       path: '/dynamic/:id',

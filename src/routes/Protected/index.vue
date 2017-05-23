@@ -24,6 +24,7 @@
 import auth from '@/utils/auth';
 
 export default {
+  name: 'Protected',
   data() {
     return {
       loggedIn: auth.loggedIn(),

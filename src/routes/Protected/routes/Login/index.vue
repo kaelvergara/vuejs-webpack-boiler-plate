@@ -17,6 +17,7 @@
 import auth from '@/utils/auth';
 
 export default {
+  name: 'Login',
   data() {
     return {
       email: 'joe@example.com',
