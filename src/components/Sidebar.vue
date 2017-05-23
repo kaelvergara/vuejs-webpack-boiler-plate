@@ -3,7 +3,7 @@
     <div class="sidebar__navigation-links">
       <span>Routes</span>
       <ul>
-        <li>Home</li>
+        <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/dynamic/1">Dynamic</router-link></li>
         <li><router-link to="/nested">Nested</router-link></li>
         <li>Redirect</li>
