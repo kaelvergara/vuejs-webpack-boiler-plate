@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AppHeader></AppHeader>
+    <Header></Header>
     <Sidebar></Sidebar>
     <div id="content" class="container-fluid">
       <div class="row">
@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import AppHeader from './components/AppHeader';
+import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 
 export default {
   name: 'app',
   components: {
-    AppHeader,
+    Header,
     Sidebar,
   },
 };
