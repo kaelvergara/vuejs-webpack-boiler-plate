@@ -9,9 +9,13 @@ import App from './App';
 import router from './router';
 import store from './store';
 
+import validators from './utils/validators';
+
 import './assets/styles/main.scss';
 
 Vue.config.productionTip = false;
+
+validators.init();
 
 /* eslint-disable no-new */
 new Vue({
