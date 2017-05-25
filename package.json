@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "lodash": "^4.17.4",
     "vee-validate": "^2.0.0-rc.3",
     "vue": "^2.2.6",
     "vue-router": "^2.3.1",

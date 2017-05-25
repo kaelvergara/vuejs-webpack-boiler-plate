@@ -94,6 +94,7 @@
 <script>
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
+import debounce from 'lodash/debounce';
 
 Vue.use(VeeValidate);
 
@@ -114,6 +115,7 @@ export default {
         validations: 'required|verify_coupon',
         asyncValidation: true,
         isLoading: false,
+        debounce: 500,
       },
       description: {
         value: '',
@@ -149,18 +151,30 @@ export default {
     },
   },
   created() {
+    const asyncValidate = ({ field, newValue }) => {
+      this.simpleForm.coupon.isLoading = true;
+      this.$validator.validate(field, newValue).then(() => {
+        this.simpleForm[field].isLoading = false;
+      }).catch(() => {
+        this.simpleForm[field].isLoading = false;
+      });
+    };
+
+    const debouncedAsyncValidate = delay => debounce(asyncValidate, delay);
+
     Object.keys(this.simpleForm).forEach((field) => {
       // listen for values and attach validation if there is
       if (this.simpleForm[field].validations) {
         // validate field on value change
+
+
         if (this.simpleForm[field].asyncValidation) {
+          // include debounce if specified
+          const delay = this.simpleForm[field].debounce;
+          const validationFunction = (delay) ? debouncedAsyncValidate(delay) : asyncValidate;
+
           this.$watch(`simpleForm.${field}.value`, (newValue) => {
-            this.simpleForm[field].isLoading = true;
-            this.$validator.validate(field, newValue).then(() => {
-              this.simpleForm[field].isLoading = false;
-            }).catch(() => {
-              this.simpleForm[field].isLoading = false;
-            });
+            validationFunction({ field, newValue });
           });
         } else {
           this.$watch(`simpleForm.${field}.value`, (newValue) => {
@@ -168,7 +182,7 @@ export default {
           });
         }
 
-        // attach validation to field
+        // attach field to validator
         this.$validator.attach(field, this.simpleForm[field].validations);
       }
     });
