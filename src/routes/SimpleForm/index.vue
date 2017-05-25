@@ -82,6 +82,15 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="birthday" class="col-sm-2 control-label">Birth Day</label>
+        <div class="col-sm-10">
+          <datepicker v-model="simpleForm.birthday.value" name="birthday" format="dd/MM/yyyy"></datepicker>
+          <div>
+            <span v-show="errors.has('birthday')" class="validation-error">{{ errors.first('birthday') }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="button" class="btn btn-default" v-on:click="validateAll">Sign in</button>
         </div>
@@ -91,15 +100,19 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import VeeValidate from 'vee-validate';
-import debounce from 'lodash/debounce';
-import noop from 'lodash/noop';
+import Vue          from 'vue';
+import VeeValidate  from 'vee-validate';
+import debounce     from 'lodash/debounce';
+import noop         from 'lodash/noop';
+import Datepicker   from 'vuejs-datepicker';
 
 Vue.use(VeeValidate);
 
 export default {
   name: 'SimpleForm',
+  components: {
+    Datepicker,
+  },
   data: () => ({
     simpleForm: {
       username: {
@@ -133,6 +146,10 @@ export default {
       course: {
         value: '',
         validations: 'required',
+      },
+      birthday: {
+        value: new Date(),
+        validations: 'required|date_format:DD/MM/YYYY|date_between:25/05/2017,30/05/2017',
       },
     },
   }),

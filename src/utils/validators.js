@@ -1,4 +1,7 @@
+import moment       from 'moment';
 import { Validator } from 'vee-validate';
+
+Validator.installDateTimeValidators(moment);
 
 export default {
   init() {
