@@ -5,26 +5,26 @@
       <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Name</label>
         <div class="col-sm-10">
-          <input name="name"type="text" class="form-control" placeholder="name"  v-model="simpleForm.name.value">
+          <input name="name"type="text" class="form-control" v-model="simpleForm.name.value">
           <span v-show="errors.has('name')" class="validation-error">{{ errors.first('name') }}</span>
         </div>
       </div>
       <div class="form-group">
         <label for="email" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Email" name="email" v-model="simpleForm.email.value">
+          <input type="text" class="form-control" name="email" v-model="simpleForm.email.value">
           <span v-show="errors.has('email')" class="validation-error">{{ errors.first('email') }}</span>
         </div>
       </div>
       <div class="form-group has-feedback">
-        <label for="coupon" class="col-sm-2 control-label">Coupon</label>
+        <label for="username" class="col-sm-2 control-label">Username</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Coupon" name="coupon" v-model="simpleForm.coupon.value">
+          <input type="text" class="form-control" name="username" v-model="simpleForm.username.value">
           <span
-            v-show="simpleForm.coupon.isLoading"
+            v-show="simpleForm.username.isLoading"
             class="glyphicon glyphicon-refresh glyphicon-refresh-animate form-control-feedback"
             aria-hidden="true" />
-          <span v-show="errors.has('coupon')" class="validation-error">{{ errors.first('coupon') }}</span>
+          <span v-show="errors.has('username')" class="validation-error">{{ errors.first('username') }}</span>
         </div>
       </div>
       <div class="form-group">
@@ -112,9 +112,9 @@ export default {
         value: '',
         validations: 'required|alpha',
       },
-      coupon: {
+      username: {
         value: '',
-        validations: 'required|verify_coupon',
+        validations: 'required|unique_username',
         asyncValidation: true,
         isLoading: false,
         debounce: 500,
@@ -154,7 +154,7 @@ export default {
   },
   created() {
     const asyncValidate = ({ field, newValue }) => {
-      this.simpleForm.coupon.isLoading = true;
+      this.simpleForm[field].isLoading = true;
       this.$validator.validate(field, newValue).then(() => {
         this.simpleForm[field].isLoading = false;
       }).catch(() => {

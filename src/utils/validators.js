@@ -2,14 +2,14 @@ import { Validator } from 'vee-validate';
 
 export default {
   init() {
-    Validator.extend('verify_coupon', {
-      getMessage: field => `The ${field} is not a valid coupon.`,
+    Validator.extend('unique_username', {
+      getMessage: () => 'Username no longer available',
       validate: value => new Promise((resolve) => {
-        const validCoupons = ['SUMMER2016', 'WINTER2016', 'FALL2016'];
+        const validCoupons = ['abc123', 'user123', 'foobar'];
 
         setTimeout(() => {
           resolve({
-            valid: value && validCoupons.indexOf(value.toUpperCase()) !== -1,
+            valid: value && validCoupons.indexOf(value) !== -1,
           });
         }, 500);
       }),
