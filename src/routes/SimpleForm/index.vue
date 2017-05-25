@@ -2,20 +2,6 @@
   <div>
     <span>SimpleForm</span>
     <form class="form-horizontal">
-      <div class="form-group">
-        <label for="name" class="col-sm-2 control-label">Name</label>
-        <div class="col-sm-10">
-          <input name="name"type="text" class="form-control" v-model="simpleForm.name.value">
-          <span v-show="errors.has('name')" class="validation-error">{{ errors.first('name') }}</span>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="email" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="email" v-model="simpleForm.email.value">
-          <span v-show="errors.has('email')" class="validation-error">{{ errors.first('email') }}</span>
-        </div>
-      </div>
       <div class="form-group has-feedback">
         <label for="username" class="col-sm-2 control-label">Username</label>
         <div class="col-sm-10">
@@ -25,6 +11,20 @@
             class="glyphicon glyphicon-refresh glyphicon-refresh-animate form-control-feedback"
             aria-hidden="true" />
           <span v-show="errors.has('username')" class="validation-error">{{ errors.first('username') }}</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="email" v-model="simpleForm.email.value">
+          <span v-show="errors.has('email')" class="validation-error">{{ errors.first('email') }}</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+          <input name="name"type="text" class="form-control" v-model="simpleForm.name.value">
+          <span v-show="errors.has('name')" class="validation-error">{{ errors.first('name') }}</span>
         </div>
       </div>
       <div class="form-group">
@@ -68,7 +68,6 @@
           </div>
         </div>
       </div>
-
       <div class="form-group">
         <label for="course" class="col-sm-2 control-label">Course</label>
         <div class="col-sm-10">
@@ -103,6 +102,13 @@ export default {
   name: 'SimpleForm',
   data: () => ({
     simpleForm: {
+      username: {
+        value: '',
+        validations: 'required|unique_username',
+        asyncValidation: true,
+        isLoading: false,
+        debounce: 500,
+      },
       email: {
         value: '',
         validations: 'required|email',
@@ -112,15 +118,9 @@ export default {
         value: '',
         validations: 'required|alpha',
       },
-      username: {
-        value: '',
-        validations: 'required|unique_username',
-        asyncValidation: true,
-        isLoading: false,
-        debounce: 500,
-      },
       description: {
         value: '',
+        validations: 'max:150',
       },
       gender: {
         value: '',
