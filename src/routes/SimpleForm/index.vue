@@ -95,6 +95,7 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 import debounce from 'lodash/debounce';
+import noop from 'lodash/noop';
 
 Vue.use(VeeValidate);
 
@@ -105,6 +106,7 @@ export default {
       email: {
         value: '',
         validations: 'required|email',
+        debounce: 250,
       },
       name: {
         value: '',
@@ -160,27 +162,30 @@ export default {
       });
     };
 
+    const syncValidate = ({ field, newValue }) => {
+      this.$validator.validate(field, newValue);
+    };
+
     const debouncedAsyncValidate = delay => debounce(asyncValidate, delay);
+    const debouncedSyncValidate = delay => debounce(syncValidate, delay);
 
     Object.keys(this.simpleForm).forEach((field) => {
       // listen for values and attach validation if there is
       if (this.simpleForm[field].validations) {
-        // validate field on value change
-
+        // include debounce if specified
+        const delay = this.simpleForm[field].debounce;
+        let validationFunction = noop;
 
         if (this.simpleForm[field].asyncValidation) {
-          // include debounce if specified
-          const delay = this.simpleForm[field].debounce;
-          const validationFunction = (delay) ? debouncedAsyncValidate(delay) : asyncValidate;
-
-          this.$watch(`simpleForm.${field}.value`, (newValue) => {
-            validationFunction({ field, newValue });
-          });
+          validationFunction = (delay) ? debouncedAsyncValidate(delay) : asyncValidate;
         } else {
-          this.$watch(`simpleForm.${field}.value`, (newValue) => {
-            this.$validator.validate(field, newValue);
-          });
+          validationFunction = (delay) ? debouncedSyncValidate(delay) : syncValidate;
         }
+
+        // validate field on value change
+        this.$watch(`simpleForm.${field}.value`, (newValue) => {
+          validationFunction({ field, newValue });
+        });
 
         // attach field to validator
         this.$validator.attach(field, this.simpleForm[field].validations);
