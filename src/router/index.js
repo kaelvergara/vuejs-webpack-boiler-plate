@@ -4,18 +4,13 @@ import Router from 'vue-router';
 import store from '@/store';
 
 // Routes
-import Login      from '@/routes/Login';
-import Home       from '@/components/Home';
-import Dynamic    from '@/routes/Dynamic';
-import Nested     from '@/routes/Nested';
-import ComponentA from '@/routes/Nested/routes/ComponentA';
-import ComponentB from '@/routes/Nested/routes/ComponentB';
-import SimpleForm from '@/routes/SimpleForm';
-
-// Lazy Loading
-const LazyLoading   = () => import('@/routes/LazyLoading');
-const LazyLoadCompA = () => import('@/routes/LazyLoading/routes/ComponentA');
-const LazyLoadCompB = () => import('@/routes/LazyLoading/routes/ComponentB');
+const Login      = () => import('@/routes/Login');
+const Home       = () => import('@/components/Home');
+const Dynamic    = () => import('@/routes/Dynamic');
+const Nested     = () => import('@/routes/Nested');
+const ComponentA = () => import('@/routes/Nested/routes/ComponentA');
+const ComponentB = () => import('@/routes/Nested/routes/ComponentB');
+const SimpleForm = () => import('@/routes/SimpleForm');
 
 Vue.use(Router);
 
@@ -44,14 +39,6 @@ export default new Router({
           children: [
             { path: 'componentA', component: ComponentA },
             { path: 'componentB', component: ComponentB },
-          ],
-        },
-        {
-          path: 'lazy-loading',
-          component: LazyLoading,
-          children: [
-            { path: 'componentA', component: LazyLoadCompA },
-            { path: 'componentB', component: LazyLoadCompB },
           ],
         },
         { path: 'simple-form', component: SimpleForm },

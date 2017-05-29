@@ -6,7 +6,6 @@
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/dynamic/1">Dynamic</router-link></li>
         <li><router-link to="/nested">Nested</router-link></li>
-        <li><router-link to="/lazy-loading">Lazy Loading</router-link></li>
       </ul>
       <span>Forms</span>
       <ul>
