@@ -25,10 +25,20 @@ function requireAuth(to, from, next) {
   }
 }
 
+function logout(to, from, next) {
+  store.dispatch('logOut').then(() => {
+    next({
+      path: '/login',
+      query: { logout: 'true' },
+    });
+  });
+}
+
 export default new Router({
   routes: [
     // Routes
     { path: '/login', component: Login },
+    { path: '/logout', component: Login, beforeEnter: logout },
     { path: '/',
       component: Home,
       beforeEnter: requireAuth,

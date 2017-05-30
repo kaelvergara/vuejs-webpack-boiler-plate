@@ -20,8 +20,11 @@ export default new Vuex.Store({
   },
   mutations: {
     setToken(state, { uid }) {
-      // state.id = uid;
       localStorage.setItem('user_token', uid);
+    },
+
+    deleteToken() {
+      localStorage.removeItem('user_token');
     },
   },
   actions: {
@@ -29,6 +32,14 @@ export default new Vuex.Store({
       return new Promise((resolve) => {
         firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
           commit('setToken', user);
+          resolve();
+        });
+      });
+    },
+    logOut({ commit }) {
+      return new Promise((resolve) => {
+        firebase.auth().signOut().then(() => {
+          commit('deleteToken');
           resolve();
         });
       });

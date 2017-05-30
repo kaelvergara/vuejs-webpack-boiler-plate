@@ -7,6 +7,9 @@
         </a>
         <p class="navbar-text">Vuejs - The Good Parts</p>
       </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><router-link to="/logout">Logout</router-link></li>
+      </ul>
     </div>
   </nav>
 </template>
